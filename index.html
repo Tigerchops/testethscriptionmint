@@ -202,7 +202,8 @@
           inscribeButtonClick(dataUri);
         });
         imageGrid.appendChild(imageItem);
-      }
+      } catch (error) {
+          console.log("Error fetching API:", error); //error check
       currentIndex = Math.min(currentIndex + batchSize + 1, 5000); // Update currentIndex
       // Hide the "Load More" button if all images have been loaded
       if (currentIndex > 5000) {
