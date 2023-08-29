@@ -202,6 +202,13 @@
           inscribeButtonClick(dataUri);
         });
         imageGrid.appendChild(imageItem);
+        // Check if the image exists in the API
+        const exists = await apiexist(imageUrl);
+
+        // If the image exists, increment the counter
+        if (exists) {
+         existingMessageCount++;
+    }
       } 
       currentIndex = Math.min(currentIndex + batchSize + 1, 5000); // Update currentIndex
       // Hide the "Load More" button if all images have been loaded
@@ -338,8 +345,7 @@
       }
     }
       loadImageBatch(); // Initial load
-    loadImageBatch();
-  </script>
+     </script>
 </body>
 
 </html>
