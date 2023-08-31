@@ -193,18 +193,18 @@
         imageGrid.appendChild(imageItem);
       }
 
-      //const postHashedURIs = () => {
-        //const jsonData = JSON.stringify(hashedURIs);
-        //const blob = new Blob([jsonData], { type: 'application/json' });
-        //const url = URL.createObjectURL(blob);
+      const postHashedURIs = () => {
+        const jsonData = JSON.stringify(hashedURIs);
+        const blob = new Blob([jsonData], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
 
-        //const a = document.createElement('a');
-        //a.href = url;
-        //a.download = 'results.json';
-        //a.textContent = 'Download results.json';
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'results.json';
+        a.textContent = 'Download results.json';
   
-        //document.body.appendChild(a);
-      //};
+        /document.body.appendChild(a);
+      };
       // Simulate writing to results.json (replace with actual logic)
       //console.log('Hashed URIs:', hashedURIs);
       //};
