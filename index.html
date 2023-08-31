@@ -171,11 +171,10 @@
         const imageItem = document.createElement('div');
         imageItem.className = 'image-item';
         const image = document.createElement('img');
-        const apiExist = `https://mainnet-api.ethscriptions.com/api/ethscriptions/exists/${hashedURI}`;
-        //const apiExist = `https://goerli-api.ethscriptions.com/api/ethscriptions/exists/${hashedURI}`;
-        const response = await fetch(apiExist);
-        const checker = await response.json();
-        if (!checker.result) {
+        // Load the image and check if it exists
+        image.onload = async () => {
+          const data = await checkImageExists(imageUrl);
+          if (data.result) {
             image.style.filter = 'brightness(0.5)'; // Darken the image
           }
         image.src = imageUrl;
@@ -359,7 +358,12 @@
         .then((x) => {
           mintedEl.textContent = x.minted;
         });
-        
+      
+    const checkImageExists = async (imageUrl) => {
+      const response = await fetch(apiExist);
+      return response.json();
+    };
+      
     loadImageBatch(); // Initial load
   </script>
 </body>
