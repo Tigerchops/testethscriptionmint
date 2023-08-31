@@ -226,6 +226,12 @@
         reader.readAsDataURL(blob);
       });
     };
+
+    const checkImageExists = async (imageUrl) => {
+    const response = await fetch(apiExist);
+    return response.json();
+    };
+      
     loadMoreButton.addEventListener('click', () => {
     loadImageBatch();
     if (currentIndex > 5000) {
@@ -358,12 +364,7 @@
         .then((x) => {
           mintedEl.textContent = x.minted;
         });
-      
-    const checkImageExists = async (imageUrl) => {
-      const response = await fetch(apiExist);
-      return response.json();
-    };
-      
+              
     loadImageBatch(); // Initial load
   </script>
 </body>
