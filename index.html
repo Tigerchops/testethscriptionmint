@@ -172,11 +172,11 @@
         imageItem.className = 'image-item';
         const image = document.createElement('img');
         // Load the image and check if it exists
-        image.onload = async () => {
-          const data = await checkImageExists(imageUrl);
-          if (data.result) {
-            image.style.filter = 'brightness(0.5)'; // Darken the image
-          }
+        //image.onload = async () => {
+          //const data = await checkImageExists(imageUrl);
+          //if (data.result) {
+            //image.style.filter = 'brightness(0.5)'; // Darken the image
+          //}
         image.src = imageUrl;
         image.alt = 'Image';
         imageItem.appendChild(image);
