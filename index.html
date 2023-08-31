@@ -172,11 +172,10 @@
         imageItem.className = 'image-item';
         const image = document.createElement('img');
         // Load the image and check if it exists
-        //image.onload = async () => {
-          //const data = await checkImageExists(imageUrl);
-          //if (data.result) {
-            //image.style.filter = 'brightness(0.5)'; // Darken the image
-          //}
+        const data = await checkImageExists(imageUrl);
+        if (data.result) {
+          image.style.filter = 'brightness(0.5)'; // Darken the image
+        }
         image.src = imageUrl;
         image.alt = 'Image';
         imageItem.appendChild(image);
@@ -184,7 +183,8 @@
         imageIndex.className = 'image-index';
         imageIndex.textContent = `#${i}`;
         imageItem.appendChild(imageIndex);
-        // Attach click event to each image
+        imageGrid.appendChild(imageItem);
+            // Attach click event to each image
         image.addEventListener('click', async () => {
           const dataUri = await getImageDataUri(imageUrl);
           console.log(dataUri);
@@ -227,10 +227,10 @@
       });
     };
 
-    ///const checkImageExists = async (imageUrl) => {
-    // const response = await fetch(apiExist);
-    //return response.json();
-    //};
+    const checkImageExists = async (imageUrl) => {
+    const response = await fetch(`https://mainnet-api.ethscriptions.com/api/ethscriptions/exists/${hashedURI}`);
+    return response.json();
+  };
       
     loadMoreButton.addEventListener('click', () => {
     loadImageBatch();
