@@ -159,7 +159,7 @@
   <script>
     const imageGrid = document.getElementById('imageGrid');
     const loadMoreButton = document.getElementById('loadMoreButton');
-    const batchSize = 1000; // Number of images to load at once
+    const batchSize = 49; // Number of images to load at once
     let currentIndex = 1; // Starting index for images
     //let existingMessageCount = 0; //Mint counter
     const hashedURIs = [];
@@ -171,6 +171,13 @@
         const imageItem = document.createElement('div');
         imageItem.className = 'image-item';
         const image = document.createElement('img');
+        const apiExist = `https://mainnet-api.ethscriptions.com/api/ethscriptions/exists/${hashedURI}`;
+        //const apiExist = `https://goerli-api.ethscriptions.com/api/ethscriptions/exists/${hashedURI}`;
+        const response = await fetch(apiExist);
+        const checker = await response.json();
+        if (!checker.result) {
+            image.style.filter = 'brightness(0.5)'; // Darken the image
+          }
         image.src = imageUrl;
         image.alt = 'Image';
         imageItem.appendChild(image);
@@ -352,6 +359,7 @@
         .then((x) => {
           mintedEl.textContent = x.minted;
         });
+        
     loadImageBatch(); // Initial load
   </script>
 </body>
